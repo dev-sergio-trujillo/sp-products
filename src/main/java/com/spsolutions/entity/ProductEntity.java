@@ -1,5 +1,6 @@
 package com.spsolutions.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -7,13 +8,14 @@ import javax.persistence.*;
 import java.util.Date;
 
 
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@ToString(exclude = "category")
 @Entity
 @Table(name = "PRODUCTS")
-public class Product {
+public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +37,6 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "ID_CATEGORY")
-    @JsonManagedReference
-    private Category category;
+    @JsonBackReference
+    private CategoryEntity category;
 }

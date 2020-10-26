@@ -1,18 +1,18 @@
 package com.spsolutions.service;
 
-import com.spsolutions.entity.Product;
+import com.spsolutions.entity.ProductEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ProductService {
-    public List<Product> findAll();
+    public List<ProductEntity> findAll();
 
-    public Optional<Product> findById(Long id);
+    public Optional<ProductEntity> findById(Long id);
 
-    public Product save(Product product);
+    public ProductEntity save(ProductEntity productEntity);
 
-    public Product update(Long id, Product product);
+    public ProductEntity update(Long id, ProductEntity productEntity);
 
     public void delete(Long id);
 }

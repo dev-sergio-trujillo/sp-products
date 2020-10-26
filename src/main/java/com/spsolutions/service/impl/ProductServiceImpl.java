@@ -1,6 +1,6 @@
 package com.spsolutions.service.impl;
 
-import com.spsolutions.entity.Product;
+import com.spsolutions.entity.ProductEntity;
 import com.spsolutions.repository.ProductRepository;
 import com.spsolutions.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,36 +18,36 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public List<Product> findAll() {
+    public List<ProductEntity> findAll() {
         return productRepository.findAll();
     }
 
     @Override
-    public Optional<Product> findById(Long id) {
+    public Optional<ProductEntity> findById(Long id) {
         return productRepository.findById(id);
     }
 
     @Override
-    public Product save(Product product) {
-        return productRepository.save(product);
+    public ProductEntity save(ProductEntity productEntity) {
+        return productRepository.save(productEntity);
     }
 
     @Override
-    public Product update(Long id, Product product) {
+    public ProductEntity update(Long id, ProductEntity productEntity) {
 
-        Optional<Product> pdb = productRepository.findById(id);
+        Optional<ProductEntity> pdb = productRepository.findById(id);
 
         if(pdb.isEmpty())
-            return new Product();
+            return new ProductEntity();
 
-        product.setIdProduct(id);
-        return productRepository.save(product);
+        productEntity.setIdProduct(id);
+        return productRepository.save(productEntity);
     }
 
     @Override
     public void delete(Long id) {
 
-        Optional<Product> pdb = productRepository.findById(id);
-        pdb.ifPresent(product -> productRepository.delete(product));
+        Optional<ProductEntity> pdb = productRepository.findById(id);
+        pdb.ifPresent(productEntity -> productRepository.delete(productEntity));
     }
 }

@@ -1,20 +1,21 @@
 package com.spsolutions.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@ToString(exclude = "products")
 @Entity
 @Table(name = "CATEGORIES")
-public class Category {
+public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +28,9 @@ public class Category {
     @Column(name = "CREATED_AT")
     @Temporal(TemporalType.DATE)
     private Date createdAt;
+
+    @OneToMany(mappedBy = "category")
+    @JsonManagedReference
+    private List<ProductEntity> products;
+
 }
